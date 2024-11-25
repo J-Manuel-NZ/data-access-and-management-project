@@ -1,0 +1,36 @@
+.create-article_modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+.create-article_modal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.create-article_heading {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+.create-article_heading button {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
