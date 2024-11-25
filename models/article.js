@@ -1,23 +1,75 @@
 import mongoose from 'mongoose';
 
 const articleSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    body: {
-        type: String,
-        required: true,
-    },
     category: {
         type: String,
         required: true,
     },
-    date: {
-        type: Date,
-        required: false,
-        default: Date.now,
+    type: {
+        type: String,
+        required: true,
     },
+    name: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    about: {
+        type: String,
+        required: true,
+    },
+    born: {
+        type: String,
+        required: false,
+    },
+    died: {
+        type: String,
+        required: false,
+    },
+    nationality: {
+        type: String,
+        required: false,
+    },
+    knownFor: {
+        type: String,
+        required: false,
+    },
+    notableWorks: {
+        type: String,
+        required: false,
+    },
+    year: {
+        type: String,
+        required: false,
+    },
+    medium: {
+        type: String,
+        required: false,
+    },
+    dimensions: {
+        type: String,
+        required: false,
+    },
+    location: {
+        type: String,
+        required: false,
+    },
+    location: {
+        type: String,
+        required: false,
+    },
+    designedBy: {
+        type: String,
+        required: false,
+    },
+    developer: {
+        type: String,
+        required: false,
+    },
+    image: {
+        type: String,
+        required: false,
+    }
 });
 
 const Article = mongoose.models.Article || mongoose.model('Article', articleSchema);

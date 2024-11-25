@@ -1,33 +1,11 @@
 'use client';
-import Image from "next/image";
 import styles from "./page.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { get, set } from "mongoose";
 
 export default function Home() {
-  const [name, setName] = useState("Name");
-  const [body, setBody] = useState("Body");
-  const [category, setCategory] = useState("Category");
+  
   const [articles, setArticles] = useState([]);
-
-  const handleSubmit = async (e) => {
-    const date = Date.now();
-    e.preventDefault();
-    try {
-      const response = await axios.post("/api/articles", {
-        name,
-        body,
-        category,
-        date
-      });
-      if (response.status === 201) {
-        console.log("Article Created");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   const fetchArticles = async () => {
     try {
@@ -42,40 +20,19 @@ export default function Home() {
 
   }
 
-
   useEffect(() => {
     fetchArticles()
+    console.log(articles);
   }, []);
-
 
   return (
     <div className={styles.page}>
-      <h1>Create Article Form</h1>
-      <form onSubmit={handleSubmit} className={styles.flexCol}>
-        <input 
-        onChange={(e) => setName(e.target.value)}
-        type="text" 
-        placeholder={name} 
-        />
-        <input 
-        onChange={(e) => setBody(e.target.value)}
-        type="text" 
-        placeholder={body}
-        />
-        <input 
-        onChange={(e) => setCategory(e.target.value)}
-        type="text" 
-        placeholder={category} 
-        />
-        <button type="submit" >Create</button>
-      </form>
-
-      <div>
+      <div className={styles.articleContainer}>
         {articles.map((article, indx) => 
           <div key={indx} className={styles.article}>
-            <h2>{article.name}</h2>
-            <p>{article.body}</p>
-            <p>{article.category}</p>
+            <h2>Name: {article.name}</h2>
+            <p>Type: {article.type}</p>
+            <p>Category: {article.category}</p>
           </div>
         )}
       </div>
