@@ -62,13 +62,10 @@ const Register = () => {
             </div>
             <label className="w-full text-sm">Role</label>
             <div className="flex w-full">
-              <input
-                type="text"
-                placeholder="Tutor or Admin"
-                className="w-full h-8 border border-solid border-black py-1 px-2.5 rounded"
-                name="role"
-                required
-              />
+              <select>
+                <option value="tutor">Tutor</option>
+                <option value="admin">Admin</option>
+              </select>
             </div>
     
             <button className="w-full border border-solid border-black py-1.5 mt-2.5 rounded

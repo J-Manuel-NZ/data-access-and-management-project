@@ -7,23 +7,29 @@ import { useRouter } from "next/navigation";
 
 function Navbar() {
   
-  const { status } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   const showSession = () => {
     if (status === "authenticated") {
       return (
-        <button
-          className="border border-solid border-black rounded"
-          onClick={() => {
-            signOut({ redirect: false }).then(() => {
-              router.push("/");
-            });
-          }}
-        >
-          Sign Out
-        </button>
-      )
+        <div>
+          <span className="text-[#888] text-sm mt-7">
+            {session.user.name} signed in with role of {session.user.role}
+          </span>
+
+          <button
+            className="border border-solid border-black rounded"
+            onClick={() => {
+              signOut({ redirect: false }).then(() => {
+                router.push("/");
+              });
+            }}
+          >
+            Sign Out
+          </button>
+        </div>
+      );
     } else if (status === "loading") {
       return (
         <span className="text-[#888] text-sm mt-7">Loading...</span>
