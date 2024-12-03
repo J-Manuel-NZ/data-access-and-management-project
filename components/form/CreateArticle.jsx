@@ -87,12 +87,12 @@ function CreateArticle({ setShowModal }) {
                 />
                 <input 
                     onChange={(e) => setBorn(e.target.value)}
-                    type="text" 
+                    type="date" 
                     placeholder="Born" 
                 />
                 <input 
                     onChange={(e) => setDied(e.target.value)}
-                    type="text" 
+                    type="date" 
                     placeholder="Died" 
                 />
                 <input 
@@ -101,18 +101,18 @@ function CreateArticle({ setShowModal }) {
                     placeholder="Nationality" 
                 />
                 <input 
-                    onChange={(e) => setKnownFor(e.target.value)}
+                    onChange={(e) => setKnownFor(e.target.value.split(','))}
                     type="text" 
                     placeholder="Known For" 
                 />
                 <input 
-                    onChange={(e) => setNotableWorks(e.target.value)}
+                    onChange={(e) => setNotableWorks(e.target.value.split(','))}
                     type="text" 
                     placeholder="Notable Works" 
                 />
                 <input 
                     onChange={(e) => setYear(e.target.value)}
-                    type="text" 
+                    type="number" 
                     placeholder="Year" 
                 />
                 <input 
@@ -142,7 +142,7 @@ function CreateArticle({ setShowModal }) {
                 />
                 <input 
                     onChange={(e) => setImage(e.target.value)}
-                    type="text" 
+                    type="url" 
                     placeholder="Image" 
                 />
                 <button type="submit">Save</button>
