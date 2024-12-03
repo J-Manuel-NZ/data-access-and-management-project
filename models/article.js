@@ -19,11 +19,11 @@ const articleSchema = new mongoose.Schema({
         required: true,
     },
     born: {
-        type: String,
+        type: Date,
         required: false,
     },
     died: {
-        type: String,
+        type: Date,
         required: false,
     },
     nationality: {
@@ -31,15 +31,15 @@ const articleSchema = new mongoose.Schema({
         required: false,
     },
     knownFor: {
-        type: String,
+        type: [String],
         required: false,
     },
     notableWorks: {
-        type: String,
+        type: [String],
         required: false,
     },
     year: {
-        type: String,
+        type: Number,
         required: false,
     },
     medium: {
