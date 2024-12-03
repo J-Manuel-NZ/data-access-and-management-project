@@ -54,6 +54,60 @@ export async function POST(request) {
     return NextResponse.json({ message: "Article not created" }, { status: 500 });
 }
 
+export async function PUT(request) {
+    try {
+        // connect to db
+        await connectDB();
+        // get data from request
+        const { 
+            id,
+            category,
+            type,
+            name,
+            about,
+            born,
+            died,
+            nationality,
+            knownFor,
+            notableWorks,
+            year,
+            medium,
+            dimensions,
+            location,
+            designedBy,
+            developer,
+            image
+        } = await request.json();
+        // update new article
+        const updatedArticle = await Article.findByIdAndUpdate(id, { 
+            category,
+            type,
+            name,
+            about,
+            born,
+            died,
+            nationality,
+            knownFor,
+            notableWorks,
+            year,
+            medium,
+            dimensions,
+            location,
+            designedBy,
+            developer,
+            image
+        });
+
+        // return response to user
+        return NextResponse.json(updatedArticle, { status: 201 });
+        
+    } catch (error) {
+        console.log(error);
+    }
+    return NextResponse.json({ message: "Article not updated" }, { status: 500 });
+}
+
+
 export async function GET() {
     try {
         // connect to db
@@ -66,5 +120,24 @@ export async function GET() {
         console.log(error);
     }
     return NextResponse.json({ message: "Articles not found" }, { status: 500 });
+}
+
+
+
+export async function DELETE(request) {
+    try {
+        // connect to the db
+        await connectDB();
+        // get the id from the request
+        const { id } = await request.json();
+        // find the article by id and delete it
+        const deletedArticle = await Article.findByIdAndDelete(id);
+        // return response to user
+        return NextResponse.json(deletedArticle, { status: 200 });
+
+    } catch (error) {
+        console.log(error);
+    }
+    return NextResponse.json({ message: "Article not deleted" }, { status: 500 });
 }
 

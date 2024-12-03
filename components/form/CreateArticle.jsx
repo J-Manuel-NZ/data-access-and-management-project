@@ -22,7 +22,6 @@ function CreateArticle({ setShowModal }) {
     const [image, setImage] = useState("Image");
 
     const handleSubmit = async (e) => {
-        const date = Date.now();
         e.preventDefault();
         try {
             const response = await axios.post("/api/articles", { 
