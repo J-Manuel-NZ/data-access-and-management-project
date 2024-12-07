@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./createArticle.css";
+import { toast } from "react-toastify";
 
 function UpdateArticle({ setShowModal, article, fetchArticles }) {
   console.log("article: ", article);
@@ -24,9 +25,11 @@ function UpdateArticle({ setShowModal, article, fetchArticles }) {
         console.log("Article Updated");
         setShowModal(false);
         fetchArticles();
+        toast.success(article.name + " updated!");
       }
     } catch (error) {
       console.log(error);
+      toast.error("Error updating article");
     }
   };
 

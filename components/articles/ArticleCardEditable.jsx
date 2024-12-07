@@ -2,9 +2,30 @@ import { set } from 'mongoose'
 import React, {useState} from 'react'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
+import { toast } from 'react-toastify'
 
-const ArticleCardEditable = ({article, setShowEditModal, userRole, setArticle}) => {
+const ArticleCardEditable = ({article, setShowEditModal, userRole, setArticle, fetchArticles}) => {
   const {data: session} = useSession();
+
+  const id = article._id;
+
+  
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete("/api/articles",{data: { 
+        id 
+    }});
+      if (response.status === 200) {
+        console.log(JSON.stringify(response.data));
+        fetchArticles();
+        toast.success('Deleted ' + article.name + " successfully!"); 
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error('Error deleting article: '+ error);
+    }
+  }
+
   return (
     <div className='grid grid-cols-6 gap-4 items-center w-full bg-white shadow-md rounded-md p-4 my-2'>
       <div className='col-span-1'>
@@ -33,7 +54,7 @@ const ArticleCardEditable = ({article, setShowEditModal, userRole, setArticle}) 
         </button>
       {userRole === 'Admin' ?
         <div className=''>
-          <button className='bg-red-500 text-white rounded-md p-2 hover:scale-[1.01] '>Delete</button>
+          <button className='bg-red-500 text-white rounded-md p-2 hover:scale-[1.01] ' onClick={handleDelete}>Delete</button>
         </div>
         : <div className=''>
         <button className='bg-gray-300 text-white rounded-md p-2 cursor-default'>Delete</button>

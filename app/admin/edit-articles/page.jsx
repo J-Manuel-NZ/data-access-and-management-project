@@ -45,7 +45,7 @@ const EditArticles = () => {
     <div className='p-4'>
       <h1 className='text-2xl font-bold'>Edit Articles</h1>
       <div className='flex flex-col w-full '>
-        {articles.map(article => <ArticleCardEditable article={article} setArticle={setArticle} key={article._id} userRole={userRole} setShowEditModal={setShowEditModal} />)}
+        {articles.map(article => <ArticleCardEditable article={article} setArticle={setArticle} key={article._id} userRole={userRole} setShowEditModal={setShowEditModal} fetchArticles={fetchAllArticles}/>)}
       </div>
       {showEditModal && <UpdateArticle fetchArticles={fetchAllArticles} article={article} setShowModal={setShowEditModal}  />}
     </div>

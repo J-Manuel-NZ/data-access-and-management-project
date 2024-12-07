@@ -1,9 +1,8 @@
 'use client'
 import React, { useState } from 'react';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { set } from 'mongoose';
 
 const AddArticle = () => {
   const [name, setName] = useState(''); // Name of the article
@@ -30,12 +29,13 @@ const AddArticle = () => {
       });
       if (response.status === 201) {
         console.log('Article Created');
-        toast('Article Created!');
+        toast.success('Article added successfully!');
         resetInputFields();
         
       }
     } catch (error) {
       console.log(error);
+      toast.error('Error adding article');
     }
   };
 
@@ -88,18 +88,6 @@ const AddArticle = () => {
           </button>
         </form>
       </div>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        />
     </div>
   );
 };

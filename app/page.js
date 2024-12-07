@@ -82,7 +82,7 @@ export default function Home() {
 
       {/* Articles */}
       <div className="flex items-center flex-col gap-20 mt-20 scroll-auto ">
-      <div className="flex items-center flex-col gap-4">
+      <div className="flex items-start flex-col gap-4">
 
         <h1 className="text-3xl text-black">SEARCH ARTICLES</h1>
         {/* Searchbar */}

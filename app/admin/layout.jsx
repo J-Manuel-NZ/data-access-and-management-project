@@ -2,6 +2,7 @@
 import React, { use, useEffect, useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { ToastContainer } from "react-toastify";
 
 
 const AdminLayout = ({ children }) => {
@@ -28,7 +29,10 @@ const AdminLayout = ({ children }) => {
     <main className="flex h-screen">
       <div className="w-1/4 max-w-72"/>
       <nav className="w-1/4 max-w-72 bg-gray-800 text-white p-4 h-full flex items-center fixed">
-        <h1 className="text-3xl font-semibold text-white mb-2 absolute top-4">Admin Panel</h1>
+      <div className=" absolute top-4">
+        <h1 className="text-3xl font-semibold text-white mb-2">Admin Panel</h1>
+        <button className="bg-gray-700 p-2 rounded w-full cursor-pointer" onClick={() => router.push("/")}>Home</button>
+      </div>
       
         <ul className="space-y-4 w-full">
             {menuItems.map((item, indx) => (
@@ -52,6 +56,19 @@ const AdminLayout = ({ children }) => {
       </div>
         {children}
       </div>
+      
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
     </main>
   );
 };
