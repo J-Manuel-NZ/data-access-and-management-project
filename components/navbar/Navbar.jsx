@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React from 'react'
 import './navbar.css'
 import { signOut, useSession } from "next-auth/react";

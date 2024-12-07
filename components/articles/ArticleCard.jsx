@@ -1,13 +1,13 @@
 import React from "react";
 
-const ArticleCard = ({ key, title, category, about, thumbnail }) => {
+const ArticleCard = ({ title, category, about, thumbnail, onClick }) => {
   const truncatedAbout =
     about.length > 120 ? about.substring(0, 120) + "..." : about;
   return (
     <div
-      className="flex flex-col gap-2 w-1/2 shadow-xl bg-white rounded-xl p-4 cursor-pointer hover:shadow-2xl transition-shadow duration-300 ease-out"
-      key={key}
-      onClick={() => console.log("clicked")}
+      className="flex flex-col gap-2 w-1/3 shadow-xl bg-white rounded-xl p-4 cursor-pointer hover:shadow-2xl transition-shadow duration-300 ease-out"
+     
+      onClick={onClick}
     >
       <div className="flex gap-2 items-end">
         <img

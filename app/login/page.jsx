@@ -26,38 +26,39 @@ const Login = () => {
     }
 };
   return (
-    <section className="login-container">
+    <section className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
-        className="login-form"
-        onSubmit={handleLogin}>
-        {error && <div className="text-black">{error}</div>}
-        <h1 className="mb-5 w-full text-2xl font-bold">Sign In</h1>
-        <label className="w-full text-sm">Email</label>
+        className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md"
+        onSubmit={handleLogin}
+      >
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+        <h1 className="mb-2 text-center w-full text-4xl font-meidum text-slate-700">Sign In</h1>
+        <label className="text-slate-700 w-full text-sm mb-2">Email</label>
         <input
           type="email"
           placeholder="Email"
-          className="w-full h-8 border border-solid border-black rounded p-2"
-          name="email" />
-        <label className="w-full text-sm">Password</label>
-        <div className="flex w-full">
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full h-8 border border-solid border-black rounded p-2"
-            name="password" />
-        </div>
-        <button className="w-full border border-solid border-black rounded">
-          Sign In
+          className="text-black w-full h-10 border border-solid border-gray-300 rounded p-2 mb-4 bg-white"
+          name="email"
+        />
+        <label className="text-slate-700 w-full text-sm mb-2">Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          className="text-black w-full h-10 border border-solid border-gray-300 rounded p-2 mb-4 bg-white"
+          name="password"
+        />
+        <button className="w-full bg-black text-white text-2xl h-10 rounded mb-4 hover:scale-[1.01] transition-transform ease-out ">
+          Log In
         </button>
-
         <Link
           href="/register"
-          className="text-sm text-[#888] transition duration-150 ease hover:text-black">
+          className="text-sm text-gray-500 transition duration-150 ease hover:text-black"
+        >
           Don't have an account?
         </Link>
       </form>
     </section>
-);
+  );
 }
 
 export default Login

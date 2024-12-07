@@ -12,6 +12,7 @@ function LoginButton() {
   
     const showSession = () => {
       if (status === "authenticated") {
+        router.push("/admin");
         return (
           <div>
             <span className="text-[#888] text-sm mt-7">

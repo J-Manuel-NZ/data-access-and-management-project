@@ -7,18 +7,6 @@ function CreateArticle({ setShowModal }) {
     const [name, setName] = useState("Name");
     const [about, setAbout] = useState("About");
     const [category, setCategory] = useState("Arts"); // Default category set to 'Arts'
-    const [type, setType] = useState("Type");
-    const [born, setBorn] = useState("Born");
-    const [died, setDied] = useState("Died");
-    const [nationality, setNationality] = useState("Nationality");
-    const [knownFor, setKnownFor] = useState("Known For");
-    const [notableWorks, setNotableWorks] = useState("Notable Works");
-    const [year, setYear] = useState("Year");
-    const [medium, setMedium] = useState("Medium");
-    const [dimensions, setDimensions] = useState("Dimensions");
-    const [location, setLocation] = useState("Location");
-    const [designedBy, setDesignedBy] = useState("Designed By");
-    const [developer, setDeveloper] = useState("Developer");
     const [image, setImage] = useState("Image");
 
     const handleSubmit = async (e) => {
@@ -26,20 +14,8 @@ function CreateArticle({ setShowModal }) {
         try {
             const response = await axios.post("/api/articles", { 
                 category,
-                type,
                 name,
                 about,
-                born,
-                died,
-                nationality,
-                knownFor,
-                notableWorks,
-                year,
-                medium,
-                dimensions,
-                location,
-                designedBy,
-                developer,
                 image
             });
             if (response.status === 201) {

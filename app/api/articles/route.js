@@ -9,39 +9,15 @@ export async function POST(request) {
         // get data from request
         const { 
             category,
-            type,
             name,
             about,
-            born,
-            died,
-            nationality,
-            knownFor,
-            notableWorks,
-            year,
-            medium,
-            dimensions,
-            location,
-            designedBy,
-            developer,
             image
         } = await request.json();
         // create new article
         const newArticle = new Article({ 
             category,
-            type,
             name,
             about,
-            born,
-            died,
-            nationality,
-            knownFor,
-            notableWorks,
-            year,
-            medium,
-            dimensions,
-            location,
-            designedBy,
-            developer,
             image
         });
         await newArticle.save();
@@ -62,39 +38,15 @@ export async function PUT(request) {
         const { 
             id,
             category,
-            type,
             name,
             about,
-            born,
-            died,
-            nationality,
-            knownFor,
-            notableWorks,
-            year,
-            medium,
-            dimensions,
-            location,
-            designedBy,
-            developer,
             image
         } = await request.json();
         // update new article
         const updatedArticle = await Article.findByIdAndUpdate(id, { 
             category,
-            type,
             name,
             about,
-            born,
-            died,
-            nationality,
-            knownFor,
-            notableWorks,
-            year,
-            medium,
-            dimensions,
-            location,
-            designedBy,
-            developer,
             image
         });
 

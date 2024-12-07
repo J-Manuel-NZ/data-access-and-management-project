@@ -9,11 +9,17 @@ export async function GET(request, { params }) {
         await connectDB();
         // get category from the query parameters
         // get category from the URL parameters
-        const { category } = await params;
-        console.log("Category:", category);
+        const { searchQuery } = await params;
+        console.log("Search Query:", searchQuery);
     
-        // find all articles by category
-        const articles = await Article.find({ category });
+        // find all articles by search query
+        const articles = await Article.find({
+            $or: [ 
+                { title: { $regex: searchQuery, $options: 'i' } },
+                { category: { $regex: searchQuery, $options: 'i' } },
+                { about: { $regex: searchQuery, $options: 'i' } },
+            ]
+        });
         // return response to user
         return NextResponse.json(articles, { status: 200 });
 
