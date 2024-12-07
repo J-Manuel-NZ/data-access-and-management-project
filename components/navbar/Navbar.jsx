@@ -5,20 +5,15 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import LoginButton from '../login/LoginButton';
+import Image from 'next/image';
 
 function Navbar() {
-  
-  const { data: session, status } = useSession();
-  const router = useRouter();
-
-
   return (
-    <div className='navbar'>
-      <div className='navbar_search-bar'>
-        <input type="text" />
-        <button>Search</button>
+    <div className='flex w-full items-center justify-center between mt-20 px-32 '>
+      <div className='flex w-full justify-between items-center'>
+        <Image src='/whitecliffe-logo.png' alt='logo' width={400} height={100}/>
+        <LoginButton />
       </div>
-      <LoginButton />
     </div>
   )
 }
