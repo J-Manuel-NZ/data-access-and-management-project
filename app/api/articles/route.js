@@ -1,6 +1,8 @@
 import connectDB from "@/lib/mongoose";
 import Article from "@/models/article";
 import { NextResponse } from "next/server";
+import path from "path";
+import fs from "fs/promises";
 
 export async function POST(request) {
     try {
@@ -9,39 +11,15 @@ export async function POST(request) {
         // get data from request
         const { 
             category,
-            type,
             name,
             about,
-            born,
-            died,
-            nationality,
-            knownFor,
-            notableWorks,
-            year,
-            medium,
-            dimensions,
-            location,
-            designedBy,
-            developer,
             image
         } = await request.json();
         // create new article
         const newArticle = new Article({ 
             category,
-            type,
             name,
             about,
-            born,
-            died,
-            nationality,
-            knownFor,
-            notableWorks,
-            year,
-            medium,
-            dimensions,
-            location,
-            designedBy,
-            developer,
             image
         });
         await newArticle.save();
@@ -62,39 +40,15 @@ export async function PUT(request) {
         const { 
             id,
             category,
-            type,
             name,
             about,
-            born,
-            died,
-            nationality,
-            knownFor,
-            notableWorks,
-            year,
-            medium,
-            dimensions,
-            location,
-            designedBy,
-            developer,
             image
         } = await request.json();
         // update new article
         const updatedArticle = await Article.findByIdAndUpdate(id, { 
             category,
-            type,
             name,
             about,
-            born,
-            died,
-            nationality,
-            knownFor,
-            notableWorks,
-            year,
-            medium,
-            dimensions,
-            location,
-            designedBy,
-            developer,
             image
         });
 
@@ -126,18 +80,38 @@ export async function GET() {
 
 export async function DELETE(request) {
     try {
-        // connect to the db
-        await connectDB();
-        // get the id from the request
-        const { id } = await request.json();
-        // find the article by id and delete it
-        const deletedArticle = await Article.findByIdAndDelete(id);
-        // return response to user
-        return NextResponse.json(deletedArticle, { status: 200 });
-
+      // Connect to the database
+      await connectDB();
+  
+      // Get the ID from the request
+      const { id } = await request.json();
+  
+      // Find the article by ID
+      const article = await Article.findById(id);
+      if (!article) {
+        return NextResponse.json({ message: "Article not found" }, { status: 404 });
+      }
+  
+      // Get the image URL from the article
+      const imageUrl = article.image;
+      const imagePath = path.join(process.cwd(), "public", imageUrl);
+  
+      // Delete the image file if it exists
+      try {
+        await fs.unlink(imagePath);
+        console.log(`Deleted image file: ${imagePath}`);
+      } catch (error) {
+        console.log(`Error deleting image file: ${error.message}`);
+      }
+  
+      // Delete the article from the database
+      const deletedArticle = await Article.findByIdAndDelete(id);
+  
+      // Return response to user
+      return NextResponse.json(deletedArticle, { status: 200 });
     } catch (error) {
-        console.log(error);
+      console.log(error);
+      return NextResponse.json({ message: "Article not deleted" }, { status: 500 });
     }
-    return NextResponse.json({ message: "Article not deleted" }, { status: 500 });
-}
+  }
 

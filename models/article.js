@@ -5,10 +5,6 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    type: {
-        type: String,
-        required: true,
-    },
     name: {
         type: String,
         required: true,
@@ -17,54 +13,6 @@ const articleSchema = new mongoose.Schema({
     about: {
         type: String,
         required: true,
-    },
-    born: {
-        type: Date,
-        required: false,
-    },
-    died: {
-        type: Date,
-        required: false,
-    },
-    nationality: {
-        type: String,
-        required: false,
-    },
-    knownFor: {
-        type: [String],
-        required: false,
-    },
-    notableWorks: {
-        type: [String],
-        required: false,
-    },
-    year: {
-        type: Number,
-        required: false,
-    },
-    medium: {
-        type: String,
-        required: false,
-    },
-    dimensions: {
-        type: String,
-        required: false,
-    },
-    location: {
-        type: String,
-        required: false,
-    },
-    location: {
-        type: String,
-        required: false,
-    },
-    designedBy: {
-        type: String,
-        required: false,
-    },
-    developer: {
-        type: String,
-        required: false,
     },
     image: {
         type: String,
