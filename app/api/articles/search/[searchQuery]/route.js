@@ -15,7 +15,7 @@ export async function GET(request, { params }) {
         // find all articles by search query
         const articles = await Article.find({
             $or: [ 
-                { title: { $regex: searchQuery, $options: 'i' } },
+                { name: { $regex: searchQuery, $options: 'i' } },
                 { category: { $regex: searchQuery, $options: 'i' } },
                 { about: { $regex: searchQuery, $options: 'i' } },
             ]

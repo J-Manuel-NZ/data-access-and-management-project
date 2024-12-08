@@ -13,13 +13,24 @@ function UpdateArticle({ setShowModal, article, fetchArticles }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("file", image);
+
+    const uploadResponse = await axios.post("/api/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    const imageUrl = uploadResponse.data.fileUrl;
+    console.log("Image URL: ", imageUrl);
     try {
       const response = await axios.put("/api/articles", {
         id,
         category,
         name,
         about,
-        image,
+        image: imageUrl,
       });
       if (response.status === 201) {
         console.log("Article Updated");

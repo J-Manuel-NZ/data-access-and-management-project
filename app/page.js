@@ -123,7 +123,7 @@ export default function Home() {
                 title={article.name}
                 category={article.category}
                 about={article.about}
-                thumbnail={article.thumbnail}
+                thumbnail={article.image}
                 onClick={() => {setActiveArticle(article); setIsActiveArticleOpen(true)}}
               />
             ))

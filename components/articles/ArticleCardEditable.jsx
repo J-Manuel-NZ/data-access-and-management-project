@@ -29,7 +29,7 @@ const ArticleCardEditable = ({article, setShowEditModal, userRole, setArticle, f
   return (
     <div className='grid grid-cols-6 gap-4 items-center w-full bg-white shadow-md rounded-md p-4 my-2'>
       <div className='col-span-1'>
-        {article.image !== '' && <img src={article.image} alt='thumbnail' className='w-20 h-20 object-cover' />}
+        {article.image !== '' && <img src={article.image} alt='thumbnail' className='w-60 h-60 object-contain' />}
       </div>
       <div className='col-span-1'>
         <h3 className='text-lg font-medium'>Title</h3>
